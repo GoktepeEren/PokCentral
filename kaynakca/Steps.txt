@@ -1,0 +1,11 @@
+Chatgpt den çılgınlar gibi yardım alıyoruz.
+1 - Bilgisayarımıza Pyhton kurduk.
+python --version
+pip --versiyon kontrol edilir.
+
+2 - pip install flask
+Flask kurulur
+
+pip install flask requests
+
+

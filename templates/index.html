@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokémon Cards</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+
+    <div class="container">
+      <form method="GET" class="search-form">
+        <input type="text" name="q" placeholder="Search by name or set..."
+          value="{{ query }}" />
+        <select name="set">
+          <option value>All Sets</option>
+          {% for set in sets %}
+          <option value="{{ set.id }}" {% if selected_set == set.id %}selected{%
+            endif %}>{{ set.name }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit">Search</button>
+        <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
+      </form>
+
+      <div class="cards-frame">
+        {% for card in cards %}
+        <a href="{{ url_for('card_detail', card_id=card.id) }}"
+          class="card-link" title="{{ card.name }}">
+          <div class="card" data-set="{{ card.set.id }}">
+            <img src="{{ card.images.small }}" alt="{{ card.name }}" />
+            <div class="card-info">
+              <h3>{{ card.name }}</h3>
+              <p class="set-name">{{ card.set.name }}</p>
+              <p class="set-info">
+                {% if card.number and card.set.printedTotal %}
+                Card {{ card.number }} / {{ card.set.printedTotal }}
+                {% endif %}
+              </p>
+              {% if card.cardmarket and card.cardmarket.prices and
+              card.cardmarket.prices.averageSellPrice %}
+              <p class="price">Price: ${{
+                card.cardmarket.prices.averageSellPrice }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="pagination">
+
+        {% if page > 1 %}
+        <a href="{{ url_for('index', q=query, set=set_query, page=page-1) }}">←
+          Önceki</a>
+        {% endif %}
+        <span>Sayfa {{ page }} / {{ total_pages }}</span>
+        {% if page < total_pages %}
+        <a
+          href="{{ url_for('index', q=query, set=set_query, page=page+1) }}">Sonraki
+          →</a>
+        {% endif %}
+      </div>
+
+      <script>
+    const toggle = document.getElementById('darkToggle');
+    if(localStorage.getItem('dark-mode') === 'true'){
+      document.body.classList.add('dark-mode');
+    }
+    toggle.onclick = () => {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+    };
+  </script>
+    </body>
+  </html>

@@ -1,0 +1,518 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Genel Ayarlar */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: #f7f9fc;
+  color: #3a3a3a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Ana Kapsayıcı */
+.container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Arama Formu */
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form input,
+.search-form select {
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  color: #3a3a3a;
+  min-width: 180px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+  border-color: #7f9cf5;
+  box-shadow: 0 0 6px rgba(127, 156, 245, 0.4);
+}
+
+.search-form button {
+  padding: 12px 24px;
+  background: #7f9cf5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(127, 156, 245, 0.4);
+}
+
+.search-form button:hover {
+  background: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+/* Kartlar Alanı */
+.cards-frame {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 36px 20px;
+  width: 100%;
+}
+
+/* Kartlar */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 12px;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.card-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(127, 156, 245, 0.3);
+  z-index: 3;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 1px 3px rgba(66, 66, 66, 0.08);
+  transition: box-shadow 0.25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 12px 24px rgba(127, 156, 245, 0.3);
+}
+
+.card img {
+  object-fit: contain;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  background: #f9fafb;
+  transition: transform 0.3s ease;
+}
+
+
+.card-info {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #4a5568;
+}
+
+.card-info .set-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #5a67d8;
+}
+
+.card-info .price {
+  font-weight: 700;
+  color: #667eea;
+}
+
+/* Sayfalama */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.pagination a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #5a67d8;
+  font-weight: 600;
+}
+
+.pagination a:hover {
+  color: #434190;
+}
+
+/* Detay Sayfası */
+.card-detail-container {
+  max-width: 1100px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 48px;
+  box-shadow: 0 12px 32px rgba(99, 102, 241, 0.15);
+  color: #2d3748;
+  margin-bottom: 40px;
+}
+
+.detail-grid {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.detail-image img {
+  width: 420px;
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(99, 102, 241, 0.3);
+  background: #f7fafc;
+}
+
+.detail-info {
+  flex: 1;
+  font-size: 16px;
+}
+
+.detail-info h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  font-weight: 700;
+  color: #4c51bf;
+}
+
+.detail-info h3 {
+  margin-top: 28px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #3b82f6;
+  border-bottom: 2px solid #c7d2fe;
+  padding-bottom: 6px;
+}
+
+.detail-info p,
+.detail-info ul {
+  margin: 0 0 14px 0;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.detail-info ul {
+  list-style: disc inside;
+  padding-left: 0;
+}
+
+.detail-info ul li {
+  margin-bottom: 8px;
+}
+
+/* Type Icon Wrapper */
+.wrapper {
+  width: 280px;
+  margin: 12px 0;
+  display: grid;
+  grid-gap: 12px;
+  grid-template-columns: repeat(6, 1fr);
+  align-content: center;
+  align-items: center;
+}
+
+.icon {
+  border-radius: 100%;
+  height: 48px;
+  width: 48px;
+  margin: auto;
+  transition: 200ms all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon:hover {
+  filter: saturate(200%);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.icon img {
+  height: 30px;
+  width: 30px;
+}
+
+/* Fiyat Tablosu */
+.price-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.price-table-modern {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.price-table-modern th,
+.price-table-modern td {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.price-table-modern thead {
+  background: #eef2ff;
+}
+
+.price-table-modern tbody tr {
+  border-top: 1px solid #edf2f7;
+  transition: background-color 0.2s ease;
+}
+
+.price-table-modern tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.price-table-modern th:first-child,
+.price-table-modern td:first-child {
+  border-top-left-radius: 12px;
+}
+
+.price-table-modern th:last-child,
+.price-table-modern td:last-child {
+  border-top-right-radius: 12px;
+}
+
+
+/* Geri Bağlantı */
+.back-link {
+  text-decoration: none;
+  color: #5a67d8;
+  font-size: 15px;
+  margin-bottom: 32px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.back-link:hover {
+  color: #434190;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: #121212;
+  color: #e2e8f0;
+}
+
+body.dark-mode .card,
+body.dark-mode .card-detail-container {
+  background: #1a202c;
+  color: #e2e8f0;
+}
+
+body.dark-mode .search-form input,
+body.dark-mode .search-form select {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-color: #4a5568;
+}
+
+body.dark-mode .price-table th,
+body.dark-mode .price-table td {
+  border-color: #4b5563;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .cards-frame {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .cards-frame {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .detail-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrapper {
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-frame {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-frame {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tip (Type) Renk Stilleri */
+.bug {
+  background: #92BC2C;
+  box-shadow: 0 0 10px #92BC2C;
+}
+
+.dark {
+  background: #595761;
+  box-shadow: 0 0 10px #595761;
+}
+
+.dragon {
+  background: #0C69C8;
+  box-shadow: 0 0 10px #0C69C8;
+}
+
+.electric {
+  background: #F2D94E;
+  box-shadow: 0 0 10px #F2D94E;
+}
+
+.fire {
+  background: #FBA54C;
+  box-shadow: 0 0 10px #FBA54C;
+}
+
+.fairy {
+  background: #EE90E6;
+  box-shadow: 0 0 10px #EE90E6;
+}
+
+.fighting {
+  background: #D3425F;
+  box-shadow: 0 0 10px #D3425F;
+}
+
+.flying {
+  background: #A1BBEC;
+  box-shadow: 0 0 10px #A1BBEC;
+}
+
+.ghost {
+  background: #5F6DBC;
+  box-shadow: 0 0 10px #5F6DBC;
+}
+
+.grass {
+  background: #5FBD58;
+  box-shadow: 0 0 10px #5FBD58;
+}
+
+.ground {
+  background: #DA7C4D;
+  box-shadow: 0 0 10px #DA7C4D;
+}
+
+.ice {
+  background: #75D0C1;
+  box-shadow: 0 0 10px #75D0C1;
+}
+
+.normal {
+  background: #A0A29F;
+  box-shadow: 0 0 10px #A0A29F;
+}
+
+.poison {
+  background: #B763CF;
+  box-shadow: 0 0 10px #B763CF;
+}
+
+.psychic {
+  background: #FA8581;
+  box-shadow: 0 0 10px #FA8581;
+}
+
+.rock {
+  background: #C9BB8A;
+  box-shadow: 0 0 10px #C9BB8A;
+}
+
+.steel {
+  background: #5695A3;
+  box-shadow: 0 0 10px #5695A3;
+}
+
+.water {
+  background: #539DDF;
+  box-shadow: 0 0 10px #539DDF;
+}
+
+.detail-info .set-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.card-info .set-info {
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 16px;
+}
+
+.set-logo, .set-symbol {
+  height: 40px;
+  width: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  object-fit: contain;
+}
+
+.set-text-info {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #4a5568;
+}
+
+.card-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2d3748;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-number {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  font-family: 'Courier New', Courier, monospace;
+}

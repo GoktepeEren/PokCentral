@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ card.name }} - Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="container card-detail-container">
+      <a href="{{ url_for('index') }}" class="back-link">← Back to list</a>
+
+      <div class="detail-grid">
+        <!-- Sol: Kart görseli -->
+        <div class="detail-image">
+          <img src="{{ card.images.large }}" alt="{{ card.name }} image">
+        </div>
+
+        <!-- Sağ: Bilgiler -->
+        <div class="detail-info">
+          <h1 class="card-title">
+            {{ card.name }}
+            <span class="card-number">#{{ card.number }}</span>
+          </h1>
+
+          <h3>Set</h3>
+          <div class="set-info">
+            {% if card.set.images.logo %}
+            <img src="{{ card.set.images.logo }}" alt="{{ card.set.name }} logo"
+              class="set-logo" />
+            {% endif %}
+            {% if card.set.images.symbol %}
+            <img src="{{ card.set.images.symbol }}"
+              alt="{{ card.set.name }} symbol" class="set-symbol" />
+            {% endif %}
+
+            <div class="set-text-info">
+              <strong>{{ card.set.name }}</strong><br />
+              Series: {{ card.set.series }}<br />
+              Total Cards: {{ card.set.total }}<br />
+              Release Date: {{ card.set.releaseDate }}
+            </div>
+          </div>
+
+          {% if card.types %}
+          <h3>Types</h3>
+          <div class="wrapper">
+            {% for type in card.types %}
+            <div class="icon {{ type|lower }}">
+              <img
+                src="{{ url_for('static', filename='icons/' + type|lower + '.svg') }}"
+                alt="{{ type }} icon" />
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if card.abilities %}
+          <h3>Abilities</h3>
+          <ul>
+            {% for ability in card.abilities %}
+            <li><strong>{{ ability.name }}:</strong> {{ ability.text }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if card.attacks %}
+          <h3>Attacks</h3>
+          <ul>
+            {% for attack in card.attacks %}
+            <li>
+              <strong>{{ attack.name }}</strong> - Cost: {{ attack.cost |
+              join(', ') }}<br />
+              Damage: {{ attack.damage or 'N/A' }}<br />
+              {{ attack.text or '' }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if card.weaknesses %}
+          <h3>Weaknesses</h3>
+          <ul>
+            {% for weak in card.weaknesses %}
+            <li>{{ weak.type }} ×{{ weak.value }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if card.resistances %}
+          <h3>Resistances</h3>
+          <ul>
+            {% for resist in card.resistances %}
+            <li>{{ resist.type }} {{ resist.value }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          {% if card.tcgplayer and card.tcgplayer.prices %}
+          <h3>Prices</h3>
+          <div class="price-table-container">
+            <table class="price-table-modern">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Market Price (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for price_type, price in card.tcgplayer.prices.items() %}
+                <tr>
+                  <td>{{ price_type.replace('_', ' ').title() }}</td>
+                  <td>${{ price.market | default(0) | round(2) }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <script>
+    const toggle = document.getElementById('darkToggle');
+    if (localStorage.getItem('dark-mode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+    if (toggle) {
+      toggle.onclick = () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+      };
+    }
+  </script>
+  </body>
+</html>
